@@ -1,0 +1,189 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Header Styling */
+header {
+    background-color: #333;
+    padding: 10px;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 10px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Home Section */
+#home {
+    background: linear-gradient(135deg, #fbf7ff 0%, #94a3bc 100%);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.intro {
+    text-align: center;
+    color: white;
+}
+
+.intro h1 {
+    font-size: 4rem;
+}
+
+.highlight {
+    color: #ff6347;
+}
+
+.button {
+    padding: 10px 20px;
+    margin-top: 100px; 
+    background-color: #ff6347;
+    color: white;
+    border: none;
+    text-decoration: none;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #ff4500;
+}
+
+/* About Section */
+#about {
+    padding: 50px;
+    text-align: center;
+}
+
+#about h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+/* Projects Section */
+#projects {
+    padding: 50px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+#projects h2 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+}
+
+.project {
+    margin-bottom: 20px;
+}
+
+.project h3 {
+    font-size: 1.8rem;
+    color: #333;
+}
+
+.project p {
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Contact Section */
+#contact {
+    padding: 50px;
+    text-align: center;
+}
+
+#contact h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+#contact p {
+    font-size: 1.2rem;
+    color: #333;
+}
+#contact a {
+    color: #ff6347;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+#contact a:hover {
+    color: #ff4500;
+}
+
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+footer p {
+    margin: 0;
+}
+/* Responsive styling for mobile devices (phones and small tablets) */
+@media (max-width: 768px) {
+
+    /* Make the text smaller and adjust padding for sections */
+    body {
+        font-size: 16px; /* Text is more readable on small screens */
+    }
+
+    header nav ul li {
+        display: block; /* Stacks the nav items vertically */
+        margin: 10px 0; /* Adds space between navigation links */
+    }
+
+    .intro h1 {
+        font-size: 2.5rem; /* Smaller heading for better fit on phones */
+    }
+
+    .button {
+        padding: 8px 16px; /* Adjust button size for phones */
+        font-size: 1rem; /* Smaller font size on buttons */
+    }
+
+    section {
+        padding: 20px; /* Reduce padding for better spacing on small screens */
+    }
+
+    #projects h2, #about h2, #contact h2 {
+        font-size: 2rem; /* Adjust heading sizes for smaller screens */
+    }
+
+    /* Make sure the home section height is smaller to fit phone screens */
+    #home {
+        height: 70vh; /* Reduced height for mobile display */
+    }
+
+    /* Footer adjustments for smaller devices */
+    footer {
+        font-size: 0.9rem; /* Smaller footer text */
+    }
+}
