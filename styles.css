@@ -21,11 +21,15 @@ header {
 
 nav ul {
     list-style: none;
+    display: flex; /* Flexbox to keep nav items horizontal */
+    justify-content: center; /* Center the navigation items */
+    padding: 0; /* Remove padding from the list */
+    margin: 0; /* Remove margin from the list */
 }
 
 nav ul li {
-    display: inline;
-    margin: 0 10px;
+    display: inline; /* Keep the items inline */
+    margin: 0 10px; /* Space between nav links */
 }
 
 nav ul li a {
@@ -124,6 +128,7 @@ nav ul li a {
     font-size: 1.2rem;
     color: #333;
 }
+
 #contact a {
     color: #ff6347;
     text-decoration: none;
@@ -134,7 +139,6 @@ nav ul li a {
 #contact a:hover {
     color: #ff4500;
 }
-
 
 /* Footer */
 footer {
@@ -147,6 +151,7 @@ footer {
 footer p {
     margin: 0;
 }
+
 /* Responsive styling for mobile devices (phones and small tablets) */
 @media (max-width: 768px) {
 
@@ -155,9 +160,8 @@ footer p {
         font-size: 16px; /* Text is more readable on small screens */
     }
 
-    header nav ul li {
-        display: block; /* Stacks the nav items vertically */
-        margin: 10px 0; /* Adds space between navigation links */
+    header nav ul {
+        justify-content: center; /* Center items on smaller screens */
     }
 
     .intro h1 {
