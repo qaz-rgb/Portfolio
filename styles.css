@@ -140,6 +140,21 @@ nav ul li a {
     color: #ff4500;
 }
 
+#bottom {
+    background-color: #333;
+    color: #fff;
+    padding: 40px 0;
+    text-align: center;
+}
+
+.bottom-content img {
+    max-width: 100%;  /* Makes the image responsive */
+    height: auto;
+    margin: 0 auto; /* Centers the image */
+    display: block;
+}
+
+
 /* Footer */
 footer {
     background-color: #333;
