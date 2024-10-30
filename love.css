@@ -1,0 +1,58 @@
+/* General page styling */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-image: url('https://images.alphacoders.com/100/thumb-1920-1000500.jpg'); /* Example old paper background */
+    background-size: cover;
+    background-position: center;
+    font-family: 'singnature', cursive; /* Signature font */
+}
+
+/* Container for the letter content */
+.letter-container {
+    background: rgba(255, 255, 255, 0.5);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+    text-align: center;
+}
+
+/* Text styling for the letter */
+.letter-content .message {
+    font-size: 2rem;
+    font-family: 'singnature', cursive;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    color: #4a2c2a;
+}
+
+/* Styling for the love options */
+.love-options {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    font-size: 1.5rem;
+}
+
+label {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'signature', cursive;
+    font-size: 1.5rem;
+}
+
+input[type="checkbox"] {
+    transform: scale(1.5);
+    cursor: pointer;
+}
+
+/* Optional hover effect */
+input[type="checkbox"]:hover {
+    transform: scale(1.7);
+}
