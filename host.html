@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Host-Controlled Button Timing with Names</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f0f0;
+      font-family: Arial, sans-serif;
+    }
+    button {
+      padding: 15px 30px;
+      font-size: 18px;
+      color: white;
+      background-color: red;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 10px;
+    }
+    button:disabled {
+      background-color: grey;
+      cursor: not-allowed;
+    }
+    button:hover:not(:disabled) {
+      background-color: darkred;
+    }
+    input {
+      padding: 10px;
+      font-size: 16px;
+      margin: 10px;
+    }
+    table {
+      margin-top: 20px;
+      border-collapse: collapse;
+      width: 80%;
+    }
+    table, th, td {
+      border: 1px solid black;
+    }
+    th, td {
+      padding: 10px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <!-- Host Section -->
+  <div id="hostSection">
+    <h2>Host Section</h2>
+    <input type="password" id="hostPassword" placeholder="Enter host password" />
+    <button id="hostStartButton">Start Quiz</button>
+  </div>
+
+  <!-- Participant Section -->
+  <div id="participantSection" style="display: none;">
+    <h2>Participant Section</h2>
+    <div>
+      <input type="text" id="participantName" placeholder="Enter your name" />
+      <button id="registerButton">Register</button>
+    </div>
+    <button id="redButton" disabled>Press Me</button>
+    <table id="timingTable">
+      <thead>
+        <tr>
+          <th>Serial Number</th>
+          <th>Name</th>
+          <th>Time Elapsed (seconds)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Data will be dynamically added here -->
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    const hostPassword = "quizmaster123"; // Set your password here
+    let count = 0; // Counter for serial number
+    let quizStartTime = null; // Variable to store the start time of the quiz
+    let participantName = ""; // Variable to store the participant's name
+
+    // Host starts the quiz
+    document.getElementById("hostStartButton").addEventListener("click", () => {
+      const enteredPassword = document.getElementById("hostPassword").value;
+
+      if (enteredPassword === hostPassword) {
+        alert("Quiz started by the host!");
+        quizStartTime = new Date(); // Record the start time
+        document.getElementById("hostSection").style.display = "none"; // Hide host section
+        document.getElementById("participantSection").style.display = "block"; // Show participant section
+      } else {
+        alert("Incorrect password. Please try again.");
+      }
+    });
+
+    // Register participant's name
+    document.getElementById("registerButton").addEventListener("click", () => {
+      const nameInput = document.getElementById("participantName").value.trim();
+
+      if (nameInput) {
+        participantName = nameInput;
+        alert(`Welcome, ${participantName}! You can now press the button.`);
+        document.getElementById("redButton").disabled = false; // Enable "Press Me" button
+      } else {
+        alert("Please enter your name.");
+      }
+    });
+
+    // Participant presses the button
+    document.getElementById("redButton").addEventListener("click", () => {
+      if (!quizStartTime) {
+        alert("Quiz has not started yet!");
+        return;
+      }
+
+      if (!participantName) {
+        alert("Please register your name first!");
+        return;
+      }
+
+      const currentTime = new Date();
+      const elapsedSeconds = ((currentTime - quizStartTime) / 1000).toFixed(2); // Calculate elapsed time in seconds
+      count++;
+
+      // Add the new timing to the table
+      const tableBody = document.querySelector("#timingTable tbody");
+      const newRow = document.createElement("tr");
+
+      newRow.innerHTML = `
+        <td>${count}</td>
+        <td>${participantName}</td>
+        <td>${elapsedSeconds} seconds</td>
+      `;
+
+      tableBody.appendChild(newRow);
+
+      // Disable the button for the participant after pressing
+      document.getElementById("redButton").disabled = true;
+      alert(`${participantName}, your response is recorded!`);
+    });
+  </script>
+</body>
+</html>
