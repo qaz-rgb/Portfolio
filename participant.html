@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Participant Page</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f0f0;
+      font-family: Arial, sans-serif;
+    }
+    button {
+      padding: 15px 30px;
+      font-size: 18px;
+      color: white;
+      background-color: red;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 10px;
+    }
+    button:disabled {
+      background-color: grey;
+      cursor: not-allowed;
+    }
+    button:hover:not(:disabled) {
+      background-color: darkred;
+    }
+    input {
+      padding: 10px;
+      font-size: 16px;
+      margin: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Participant Page</h1>
+  <div id="nameSection">
+    <input type="text" id="participantName" placeholder="Enter your name" />
+    <button id="registerButton">Register</button>
+  </div>
+  <div id="quizSection" style="display: none;">
+    <p id="welcomeMessage"></p>
+    <button id="pressButton" disabled>Press Me</button>
+  </div>
+
+  <script>
+    const registerButton = document.getElementById("registerButton");
+    const pressButton = document.getElementById("pressButton");
+    const welcomeMessage = document.getElementById("welcomeMessage");
+
+    let participantName = "";
+
+    // Register participant
+    registerButton.addEventListener("click", () => {
+      const nameInput = document.getElementById("participantName").value.trim();
+      if (nameInput) {
+        participantName = nameInput;
+        let registeredNames = JSON.parse(localStorage.getItem("registeredNames")) || [];
+        if (!registeredNames.includes(participantName)) {
+          registeredNames.push(participantName);
+          localStorage.setItem("registeredNames", JSON.stringify(registeredNames));
+        }
+        alert(`Welcome, ${participantName}!`);
+        document.getElementById("nameSection").style.display = "none";
+        document.getElementById("quizSection").style.display = "block";
+      } else {
+        alert("Please enter your name.");
+      }
+    });
+
+    // Button press
+    pressButton.addEventListener("click", () => {
+      const quizStartTime = new Date(localStorage.getItem("quizStartTime"));
+      const currentTime = new Date();
+      const elapsedTime = ((currentTime - quizStartTime) / 1000).toFixed(2);
+
+      let results = JSON.parse(localStorage.getItem("results")) || [];
+      results.push({ name: participantName, time: elapsedTime });
+      localStorage.setItem("results", JSON.stringify(results));
+
+      pressButton.disabled = true; // Disable button after pressing
+    });
+
+    // Enable button if quiz is running
+    window.addEventListener("storage", () => {
+      const quizRunning = localStorage.getItem("quizRunning") === "true";
+      const registeredNames = JSON.parse(localStorage.getItem("registeredNames")) || [];
+      if (quizRunning && registeredNames.includes(participantName)) {
+        pressButton.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
