@@ -1,6 +1,6 @@
 document.getElementById('yes').addEventListener('click', function() {
     if (this.checked) {
-        window.location.href = 'https://api.whatsapp.com/send?phone=8507688939&text=I%20love%20you'; // Add your Instagram profile here
+        window.location.href = 'https://instagram.com/_alaraaf_'; // Add your Instagram profile here
     }
 });
 
