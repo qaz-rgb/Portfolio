@@ -1,6 +1,6 @@
 document.getElementById('yes').addEventListener('click', function() {
     if (this.checked) {
-        window.location.href = 'https://instagram.com/_alaraaf_'; // Add your Instagram profile here
+        window.location.href = 'https://instagram.com/issueofinnocence'; // Add your Instagram profile here
     }
 });
 
